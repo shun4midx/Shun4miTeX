@@ -5,7 +5,7 @@ It's canonically pronounced as "Shunami TeX" or "Tsunami TeX".
 
 Currently, the core renderer works from the command line: it writes a temporary LaTeX file, renders it inside a Dockerized TeX Live environment, converts the result to PNG (with white text on a black background), and returns the generated image. Discord bot integration is planned for the future.
 
-## Current Status
+# Current Status
 
 * [x] C++ CLI renderer
 * [x] Dockerized LaTeX rendering
@@ -15,34 +15,34 @@ Currently, the core renderer works from the command line: it writes a temporary 
 * [ ] Possible slash command support
 * [ ] Natural math notation parser (Start with roughly high school and beginning of college math)
 
-## Requirements
+# Requirements
 
 * Docker
 * C++17 compiler
 * TeX packages are installed inside the Docker image, so a local TeX Live installation is not required for rendering.
 
-## Usage
+# Usage
 
-### Clone the Repo
+## Clone the Repo
 First, we clone this repo before proceeding
 ```bash
 git clone https://github.com/shun4midx/Shun4miTeX
 cd Shun4miTeX
 ```
 
-### Build Docker Image
+## Build Docker Image
 
 ```bash
 docker build -t shun4mitex-renderer .
 ```
 
-### Build CLI Test
+## Build CLI Test
 
 ```bash
 g++ -std=c++17 src/cli.cpp src/latex_render.cpp -o cli
 ```
 
-### CLI Test Usage
+## CLI Test Usage
 
 ```bash
 ./cli 'This is a fraction $\frac{x^2+1}{x-3}$'
@@ -56,7 +56,7 @@ Example with a custom color box based off of [Shun's usually used minimal shortc
 
 Generated render jobs are stored under `jobs/`.
 
-## Project Structure
+# Project Structure
 
 ```text
 Shun4miTeX/
@@ -71,6 +71,6 @@ Shun4miTeX/
 └── render.sh
 ```
 
-## Notes
+# Notes
 
 This project is still in early development. The renderer is currently usable through the CLI, while the Discord bot layer is still being implemented.
