@@ -56,21 +56,6 @@ Example with a custom color box based off of [Shun's usually used minimal shortc
 
 Generated render jobs are stored under `jobs/`.
 
-# Project Structure
-
-```text
-Shun4miTeX/
-├── Dockerfile
-├── render.sh
-├── src/
-│   ├── latex_render.cpp
-│   ├── latex_render.h
-│   └── cli.cpp
-├── jobs/       # generated, ignored by git
-├── README.md
-└── render.sh
-```
-
 # Notes
 
 This project is still in early development. The renderer is currently usable through the CLI, while the Discord bot layer is still being implemented.
