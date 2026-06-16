@@ -14,7 +14,7 @@ LaTeX-Template/
 *.run.xml
 *.bbl
 .DS_Store
-latex_render
+
 *.out
 test
 shun4mitex-bot

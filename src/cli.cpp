@@ -5,7 +5,7 @@
  * File: cli.cpp                            *
  ****************************************** */
 
-#include "latex_render.h"
+#include "latex_render/latex_render.h"
 
 #include <cstdlib>
 #include <filesystem>

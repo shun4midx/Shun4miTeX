@@ -64,7 +64,7 @@ And your bot should run properly, if given the correct perms!
 ## Build CLI Test
 
 ```bash
-g++ -std=c++17 src/cli.cpp src/latex_render.cpp -o cli
+g++ -std=c++17 src/cli.cpp src/latex_render/latex_render.cpp -o cli
 ```
 
 ## CLI Test Usage

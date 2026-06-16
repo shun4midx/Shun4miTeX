@@ -4,7 +4,7 @@ project(shun4mitex VERSION 1.0 DESCRIPTION "A Discord bot Shun4miTeX")
 add_executable(${PROJECT_NAME}
     bot/bot.cpp
     bot/env_parser/env_parser.cpp
-    src/latex_render.cpp
+    src/latex_render/latex_render.cpp
 )
 
 find_package(PkgConfig REQUIRED)

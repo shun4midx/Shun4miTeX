@@ -9,7 +9,7 @@
 #include <dpp/user.h>
 #include <dpp/cluster.h>
 #include "env_parser/env_parser.h"
-#include "../src/latex_render.h"
+#include "../src/latex_render/latex_render.h"
 
 #include <iostream>
 #include <format>
@@ -146,7 +146,7 @@ int main() {
             const std::string tex_command = "/tex\n";
             if (message.rfind(tex_command, 0) == 0) {
                 try {
-                    std::string input = message.substr(tex_command.length() + 1);
+                    std::string input = message.substr(tex_command.length());
 
                     fs::path png = Shun4miTeX::renderLaTeXSnippet(input, fs::current_path() / "jobs");
 
