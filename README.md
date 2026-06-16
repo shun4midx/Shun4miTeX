@@ -3,7 +3,7 @@ Shun's Discord bot for rendering LaTeX and natural math notation, into formal Te
 
 It's canonically pronounced as "Shunami TeX" or "Tsunami TeX".
 
-Currently, the core renderer works from the command line: it writes a temporary LaTeX file, renders it inside a Dockerized TeX Live environment, converts the result to PNG (with white text on a black background), and returns the generated image. Discord bot integration is planned for the future.
+Currently, the core renderer works from the command line: it writes a temporary LaTeX file, renders it inside a Dockerized TeX Live environment, converts the result to PNG (with white text on a black background), and returns the generated image. Then, this backend process is wrapped via a Discord bot.
 
 # Current Status
 
@@ -11,8 +11,8 @@ Currently, the core renderer works from the command line: it writes a temporary 
 * [x] Dockerized LaTeX rendering
 * [x] PNG output with dark background
 * [x] Basic math packages and `tcolorbox` support including some other minimal shortcuts [I use](https://github.com/shun4midx/LaTeX-Template)
-* [ ] Discord bot message command
-* [ ] Possible slash command support
+* [x] Discord bot message command
+* [x] Slash command support
 * [ ] Natural math notation parser (Start with roughly high school and beginning of college math)
 
 # Requirements

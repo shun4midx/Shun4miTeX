@@ -67,11 +67,27 @@ int main() {
         
             try {
                 fs::path png = Shun4miTeX::renderLaTeXSnippet(latex, fs::current_path() / "jobs");
+
+                std::string owner_id = std::to_string(event.command.usr.id);
         
                 dpp::message msg("Written by: <@" + std::to_string(event.command.usr.id) + ">");
         
+                dpp::component delete_button;
+                delete_button
+                    .set_type(dpp::cot_button)
+                    .set_style(dpp::cos_danger)
+                    .set_label("Delete")
+                    .set_id("tex_delete:" + owner_id);
+
+                dpp::component action_row;
+                action_row
+                    .set_type(dpp::cot_action_row)
+                    .add_component(delete_button);
+
                 msg.add_file("equation.png", dpp::utility::read_file(png.string()));
         
+                msg.add_component(action_row);
+
                 event.edit_original_response(msg);
         
             } catch (const std::exception& e) {
@@ -80,6 +96,30 @@ int main() {
                 );
             }
         }
+    });
+
+    // ======== BUTTON LISTENERS ======== //
+    bot.on_button_click([&bot](const dpp::button_click_t& event) {
+        std::string custom_id = event.custom_id;
+    
+        const std::string prefix = "tex_delete:";
+        if (custom_id.rfind(prefix, 0) != 0) {
+            return;
+        }
+    
+        std::string owner_id = custom_id.substr(prefix.size());
+        std::string clicker_id = std::to_string(event.command.usr.id);
+    
+        if (clicker_id != owner_id) {
+            event.reply(dpp::message("You can only delete your own render.").set_flags(dpp::m_ephemeral));
+            return;
+        }
+    
+        // Acknowledge the interaction
+        event.reply(dpp::message("Deleted.").set_flags(dpp::m_ephemeral));
+    
+        // Delete the rendered message itself
+        bot.message_delete(event.command.msg.id, event.command.channel_id);
     });
 
     // ======== LISTENING ======== //
@@ -102,9 +142,40 @@ int main() {
             // ======== AUTORESPONDER ======== //
             std::string og_message = message;
             std::transform(og_message.begin(), og_message.end(), og_message.begin(), ::tolower);
-            // if (og_message.find("shun4mitex") != std::string::npos || og_message.find("shun4mi") != std::string::npos || og_message.find("tsunami") != std::string::npos || og_message.find("shun4mi") != std::string::npos) {
-            //     event.reply("Omg me mention! I love Shun4mis :D <:Shun4miTeX:1516240280490082344><:Shun4miTeX:1516240280490082344>", true);
-            // }
+
+            const std::string tex_command = "/tex\n";
+            if (message.rfind(tex_command, 0) == 0) {
+                try {
+                    std::string input = message.substr(tex_command.length() + 1);
+
+                    fs::path png = Shun4miTeX::renderLaTeXSnippet(input, fs::current_path() / "jobs");
+
+                    std::string owner_id = std::to_string(event.msg.author.id);
+
+                    dpp::message msg(event.msg.channel_id,                        "Written by: <@" + owner_id + ">");
+
+                    dpp::component delete_button;
+                    delete_button
+                        .set_type(dpp::cot_button)
+                        .set_style(dpp::cos_danger)
+                        .set_label("Delete")
+                        .set_id("tex_delete:" + owner_id);
+
+                    dpp::component action_row;
+                    action_row
+                        .set_type(dpp::cot_action_row)
+                        .add_component(delete_button);
+
+                    msg.add_file("equation.png", dpp::utility::read_file(png.string()));
+
+                    msg.add_component(action_row);
+
+                    bot.message_create(msg);
+
+                } catch (const std::exception& e) {
+                    bot.message_create(dpp::message(event.msg.channel_id, "Render failed, please check your LaTeX syntax."));
+                }
+            }
         }
     });
 
