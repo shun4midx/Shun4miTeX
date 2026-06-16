@@ -68,15 +68,16 @@ int main() {
             try {
                 fs::path png = Shun4miTeX::renderLaTeXSnippet(latex, fs::current_path() / "jobs");
         
-                dpp::message msg(event.command.channel_id, "Written by: <@" + std::to_string(event.command.usr.id) + ">");
+                dpp::message msg("Written by: <@" + std::to_string(event.command.usr.id) + ">");
+        
                 msg.add_file("equation.png", dpp::utility::read_file(png.string()));
         
-                bot.message_create(msg);
+                event.edit_original_response(msg);
+        
             } catch (const std::exception& e) {
-                bot.message_create(dpp::message(
-                    event.command.channel_id,
-                    std::string("Render failed")
-                ));
+                event.edit_original_response(
+                    dpp::message("Render failed, please check your LaTeX syntax.")
+                );
             }
         }
     });
@@ -88,9 +89,9 @@ int main() {
         if (event.msg.author.format_username() != BOT_USERNAME && !contains(CONFLICTING_BOTS, event.msg.author.format_username())) {
             std::string message = event.msg.content;
 
-            // ======== Shun4miShu Says (My function only) ======= //
-            if (message.find("!bot_say") == 0 && contains(MESSAGE_PERMS, event.msg.author.username)) {
-                std::string command = "!bot_say";
+            // ======== Shun4miTeX Says (My function only) ======= //
+            if (message.find("$bot_say") == 0 && contains(MESSAGE_PERMS, event.msg.author.username)) {
+                std::string command = "$bot_say";
                 std::string quote = message.substr(command.length() + 1, message.length() - command.length());
                 bot.message_delete(event.msg.id, event.msg.channel_id);
                 event.send(quote);
