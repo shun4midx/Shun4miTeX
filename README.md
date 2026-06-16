@@ -36,6 +36,31 @@ cd Shun4miTeX
 docker build -t shun4mitex-renderer .
 ```
 
+## Hosting the Bot
+1. Clone the DPP repo to build from source with CMake (If you don't have it, please check out how to install CMake):
+```cmd
+git clone https://github.com/brainboxdotcc/DPP
+```
+
+2. Create a `.env` file, and type in the following, but replace it with your relevant details without the <>:
+```env
+BOT_TOKEN=<Your bot token>
+MESSAGE_PERMS=<Your username>,<Person 2 with message perms' username>,<etc>
+BOT_USERNAME="<Your bot username including the discriminator>"
+CONFLICTING_BOTS="<Any conflicting bot usernames including the discriminator>,<like this>"
+```
+
+3. Type the following CMake commands (Make sure to install `pkg-config` first if you don't have it):
+```cmd
+mkdir build && cd build
+cmake ..
+cmake --build . --target shun4mitex -j
+./shun4mitex
+```
+
+And your bot should run properly, if given the correct perms!
+
+# CLI Test Usage
 ## Build CLI Test
 
 ```bash
@@ -59,3 +84,6 @@ Generated render jobs are stored under `jobs/`.
 # Notes
 
 This project is still in early development. The renderer is currently usable through the CLI, while the Discord bot layer is still being implemented.
+
+# Credit
+DPP is directly found via [this](https://github.com/brainboxdotcc/DPP) repo, and is used for C++ Discord bot coding.

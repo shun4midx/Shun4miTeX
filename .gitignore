@@ -20,3 +20,5 @@ test
 shun4mitex-bot
 .env
 cli
+build/
+DPP/
