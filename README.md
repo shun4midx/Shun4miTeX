@@ -14,7 +14,7 @@ Currently, the core renderer works from the command line: it writes a temporary 
 * [x] Discord bot message command
 * [x] Slash command support
 * [x] Natural math notation parser (Start with roughly high school and beginning of college math)
-* [] Documented list of supported natural math notation
+* [ ] Documented list of supported natural math notation
 
 # Requirements
 
