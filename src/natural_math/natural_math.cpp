@@ -6,6 +6,7 @@
  ****************************************** */
 
 #include "natural_math.h"
+#include <stdexcept>
 
 // ======== FUNCTIONS ======== //
 namespace Shun4miTeX::Natural {
