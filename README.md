@@ -84,7 +84,7 @@ Generated render jobs are stored under `jobs/`.
 
 # Notes
 
-This project is still in early development. The renderer is currently usable through the CLI, while the Discord bot layer is still being implemented.
+This project is still in early development. I plan to support more languages and also emojis and other unicode in the future. Additionally, I plan to support more natural notation. However, for preliminary usage, it should suffice.
 
 # Credit
 DPP is directly found via [this](https://github.com/brainboxdotcc/DPP) repo, and is used for C++ Discord bot coding.
