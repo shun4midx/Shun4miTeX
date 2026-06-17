@@ -5,6 +5,7 @@ add_executable(${PROJECT_NAME}
     bot/bot.cpp
     bot/env_parser/env_parser.cpp
     src/latex_render/latex_render.cpp
+    src/natural_math/natural_math.cpp
 )
 
 find_package(PkgConfig REQUIRED)

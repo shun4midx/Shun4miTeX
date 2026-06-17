@@ -10,6 +10,7 @@
 #include <dpp/cluster.h>
 #include "env_parser/env_parser.h"
 #include "../src/latex_render/latex_render.h"
+#include "../src/natural_math/natural_math.h"
 
 #include <iostream>
 #include <format>
@@ -58,15 +59,18 @@ int main() {
         }
 
         // ======== MAIN FUNCTIONS ======== //
-        else if (event.command.get_command_name() == "tex") {
+        else if (event.command.get_command_name() == "tex" || event.command.get_command_name() == "math") {
             event.thinking();
         
-            std::string latex = std::get<std::string>(
-                event.get_parameter("input")
-            );
+            std::string input = std::get<std::string>(event.get_parameter("input"));
+
+            if (event.command.get_command_name() == "math") {
+                input = Shun4miTeX::Natural::naturalToLaTeX(input);
+                std::cout << input << std::endl;
+            }
         
             try {
-                fs::path png = Shun4miTeX::renderLaTeXSnippet(latex, fs::current_path() / "jobs");
+                fs::path png = Shun4miTeX::renderLaTeXSnippet(input, fs::current_path() / "jobs");
 
                 std::string owner_id = std::to_string(event.command.usr.id);
         
@@ -89,10 +93,12 @@ int main() {
                 msg.add_component(action_row);
 
                 event.edit_original_response(msg);
+
+                std::filesystem::remove_all(png.parent_path());
         
             } catch (const std::exception& e) {
                 event.edit_original_response(
-                    dpp::message("Render failed, please check your LaTeX syntax.")
+                    dpp::message("Render failed, please check your syntax.")
                 );
             }
         }
@@ -144,15 +150,22 @@ int main() {
             std::transform(og_message.begin(), og_message.end(), og_message.begin(), ::tolower);
 
             const std::string tex_command = "/tex\n";
-            if (message.rfind(tex_command, 0) == 0) {
+            const std::string math_command = "/math\n";
+            bool is_tex = true;
+            if (message.rfind(tex_command, 0) == 0 || message.rfind(math_command, 0) == 0) {
                 try {
                     std::string input = message.substr(tex_command.length());
+
+                    if (message.rfind(math_command, 0) == 0) {
+                        input = Shun4miTeX::Natural::naturalToLaTeX(input);
+                        std::cout << input << std::endl;
+                    }
 
                     fs::path png = Shun4miTeX::renderLaTeXSnippet(input, fs::current_path() / "jobs");
 
                     std::string owner_id = std::to_string(event.msg.author.id);
 
-                    dpp::message msg(event.msg.channel_id,                        "Written by: <@" + owner_id + ">");
+                    dpp::message msg(event.msg.channel_id, "Written by: <@" + owner_id + ">");
 
                     dpp::component delete_button;
                     delete_button
@@ -172,8 +185,10 @@ int main() {
 
                     bot.message_create(msg);
 
+                    std::filesystem::remove_all(png.parent_path());
+
                 } catch (const std::exception& e) {
-                    bot.message_create(dpp::message(event.msg.channel_id, "Render failed, please check your LaTeX syntax."));
+                    bot.message_create(dpp::message(event.msg.channel_id, "Render failed, please check your syntax."));
                 }
             }
         }
@@ -191,8 +206,12 @@ int main() {
             bot.global_command_create(dpp::slashcommand("is_shun_good", "Is Shun good?", bot.me.id));
             bot.global_command_create(dpp::slashcommand("shun4mitex", "Sends my pfp as an emoji", bot.me.id));
 
-            dpp::slashcommand tex_cmd("tex", "Render LaTeX as an image", bot.me.id);tex_cmd.add_option(dpp::command_option(dpp::co_string, "input", "LaTeX input", true));
+            dpp::slashcommand tex_cmd("tex", "Render LaTeX as an image", bot.me.id);
+            tex_cmd.add_option(dpp::command_option(dpp::co_string, "input", "LaTeX input", true));
             bot.global_command_create(tex_cmd);
+            dpp::slashcommand math_cmd("math", "Render natural math as an image", bot.me.id);
+            math_cmd.add_option(dpp::command_option(dpp::co_string, "input", "Natural math input", true));
+            bot.global_command_create(math_cmd);
         }
     });
 

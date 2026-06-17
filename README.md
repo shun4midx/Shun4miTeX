@@ -13,7 +13,8 @@ Currently, the core renderer works from the command line: it writes a temporary 
 * [x] Basic math packages and `tcolorbox` support including some other minimal shortcuts [I use](https://github.com/shun4midx/LaTeX-Template)
 * [x] Discord bot message command
 * [x] Slash command support
-* [ ] Natural math notation parser (Start with roughly high school and beginning of college math)
+* [x] Natural math notation parser (Start with roughly high school and beginning of college math)
+* [] Documented list of supported natural math notation
 
 # Requirements
 

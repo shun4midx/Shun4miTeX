@@ -14,7 +14,7 @@ pdftocairo \
   "${BASENAME}"
 
 convert "${BASENAME}.png" \
-  -fuzz 2% -trim +repage \
+  -fuzz 2% +repage \
   -shave 1x1 \
   -bordercolor black -border 20 \
   out.png
