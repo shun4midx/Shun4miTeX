@@ -224,6 +224,7 @@ const std::unordered_map<std::string, std::string> ALIAS_COMMANDS = {
     {"neq", "\\ne "}, {"!=", "\\ne "},
     {"approx", "\\approx "},
     {"equiv", "\\equiv "},
+    {"cong", "\\cong "},
 
     {"deg", "^{\\circ} "},
     {"degree", "^{\\circ} "},
