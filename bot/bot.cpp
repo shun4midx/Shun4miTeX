@@ -58,6 +58,11 @@ int main() {
             event.reply("<:Shun4miTeX:1516240280490082344>");
         }
 
+        // ======== HELP AND SUPPORT FUNCTIONS ======== //
+        else if (event.command.get_command_name() == "help_math") {
+            event.reply("You can either use the slash command /math or type directly \"/math\" in your message and add a new line under it to type the math you actually want. You can type normally in English, and when you want to type math, wrap it around like so `@@<math you type>@@`. If you want to type math on a new line, wrap it instead as `@@@<math you type>@@@`. As to syntax, here are examples for more info. Feel free to copy and paste these and check out how they render!\n\nWrap inline math:\n@@A = pi r^2@@\n\nWrap display math:\n@@@\nsum(i = 1, n, i^2)\n@@@\n\nMore specific examples:\n**Fractions**\n@@frac(a+b, c)@@\n\n**Roots**\n@@sqrt(x)@@\n@@root(n, x)@@\n@@cbrt(x)@@\n\n**Integrals**\n@@int(0, 1, x^2, x)@@\n@@int(-infinity, infinity, e^(-x^2), x)@@\n\n**Limits**\n@@lim(x, 0, f(x))@@\n\n**Summations**\n@@sum(i = 1, n, i)@@\n@@prod(i = 1, n, i)@@\n\n**Derivatives**\n@@deriv(y, x)@@\n@@ddx(f, x)@@\n@@pderiv(f, x)@@\n@@pddx(f, x)@@\n\n**Matrices**\n@@@pmatrix(1, 2; 3, 4)@@@\n\n**Sets**\n@@RR ZZ QQ NN CC PP AA FF HH@@\nor\n@@ℝ ℤ ℚ ℕ ℂ ℙ 𝔸 𝔽 ℍ@@\n\n**Greek**\n@@alpha beta Gamma pi theta@@\nor\n@@α β Γ π θ@@\n\n**Unicode also works!**\n@@∞ ≤ ≥ ≠ → ∈ ∪ ∩ ∅ ±@@\n\nFor even more info, please check out https://github.com/shun4midx/Shun4miTeX");
+        }
+
         // ======== MAIN FUNCTIONS ======== //
         else if (event.command.get_command_name() == "tex" || event.command.get_command_name() == "math") {
             event.thinking();
@@ -200,18 +205,20 @@ int main() {
         bot.set_presence(dpp::presence(dpp::ps_idle, dpp::at_game, "Helping Shun with math!"));
 
         if (dpp::run_once<struct register_bot_commands>()) {
-            bot.global_command_create(dpp::slashcommand("shun_names", "What are all of Shun's names?", bot.me.id));
-            bot.global_command_create(dpp::slashcommand("best_programming_language", "What's the best programming language?", bot.me.id));
-            bot.global_command_create(dpp::slashcommand("is_cpp_good", "Is C++ good?", bot.me.id));
-            bot.global_command_create(dpp::slashcommand("is_shun_good", "Is Shun good?", bot.me.id));
-            bot.global_command_create(dpp::slashcommand("shun4mitex", "Sends my pfp as an emoji", bot.me.id));
+            // bot.global_command_create(dpp::slashcommand("shun_names", "What are all of Shun's names?", bot.me.id));
+            // bot.global_command_create(dpp::slashcommand("best_programming_language", "What's the best programming language?", bot.me.id));
+            // bot.global_command_create(dpp::slashcommand("is_cpp_good", "Is C++ good?", bot.me.id));
+            // bot.global_command_create(dpp::slashcommand("is_shun_good", "Is Shun good?", bot.me.id));
+            // bot.global_command_create(dpp::slashcommand("shun4mitex", "Sends my pfp as an emoji", bot.me.id));
 
-            dpp::slashcommand tex_cmd("tex", "Render LaTeX as an image", bot.me.id);
-            tex_cmd.add_option(dpp::command_option(dpp::co_string, "input", "LaTeX input", true));
-            bot.global_command_create(tex_cmd);
-            dpp::slashcommand math_cmd("math", "Render natural math as an image", bot.me.id);
-            math_cmd.add_option(dpp::command_option(dpp::co_string, "input", "Natural math input", true));
-            bot.global_command_create(math_cmd);
+            // dpp::slashcommand tex_cmd("tex", "Render LaTeX as an image", bot.me.id);
+            // tex_cmd.add_option(dpp::command_option(dpp::co_string, "input", "LaTeX input", true));
+            // bot.global_command_create(tex_cmd);
+            // dpp::slashcommand math_cmd("math", "Render natural math as an image", bot.me.id);
+            // math_cmd.add_option(dpp::command_option(dpp::co_string, "input", "Natural math input", true));
+            // bot.global_command_create(math_cmd);
+
+            // bot.global_command_create(dpp::slashcommand("help_math", "How do I use natural math notation?", bot.me.id));
         }
     });
 

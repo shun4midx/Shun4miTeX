@@ -5,6 +5,21 @@ It's canonically pronounced as "Shunami TeX" or "Tsunami TeX".
 
 Currently, the core renderer works from the command line: it writes a temporary LaTeX file, renders it inside a Dockerized TeX Live environment, converts the result to PNG (with white text on a black background), and returns the generated image. Then, this backend process is wrapped via a Discord bot.
 
+# Command Usage
+
+The mainly supported commands are `/math` and `/tex`, which support natural math notation and LaTeX respectively. They can either be used via slash commands, or typed into a text message like so:
+```text
+/math
+<natural math here>
+```
+or
+```text
+/tex
+<TeX math here>
+```
+
+For more information about how to use natural math notation, please refer to [here](https://github.com/shun4midx/Shun4miTeX/blob/main/Natural_Doc.md).
+
 # Current Status
 
 * [x] C++ CLI renderer
@@ -14,7 +29,7 @@ Currently, the core renderer works from the command line: it writes a temporary 
 * [x] Discord bot message command
 * [x] Slash command support
 * [x] Natural math notation parser (Start with roughly high school and beginning of college math)
-* [ ] Documented list of supported natural math notation
+* [x] Documented list of supported natural math notation
 
 # Requirements
 
@@ -48,7 +63,7 @@ git clone https://github.com/brainboxdotcc/DPP
 BOT_TOKEN=<Your bot token>
 MESSAGE_PERMS=<Your username>,<Person 2 with message perms' username>,<etc>
 BOT_USERNAME="<Your bot username including the discriminator>"
-CONFLICTING_BOTS="<Any conflicting bot usernames including the discriminator>,<like this>"
+CONFLICTING_BOTS="<Any conflicting bot usernames including the discriminator>","<like this>"
 ```
 
 3. Type the following CMake commands (Make sure to install `pkg-config` first if you don't have it):
