@@ -66,6 +66,7 @@ void writeTexFile(const fs::path& tex_path, const std::string& latex) {
 \usepackage[dvipsnames,usenames]{xcolor}
 \usepackage{tcolorbox}
 \usepackage{subcaption}
+\usepackage{enumitem}
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[subsection]
 \newtheorem{statement}{Statement}[subsection]

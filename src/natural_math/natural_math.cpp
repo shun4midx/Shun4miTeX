@@ -85,7 +85,11 @@ std::string fuseSplicedText(const std::vector<NaturalChunk>& spliced_text) {
         } else if (chunk.kind == NaturalChunkKind::InlineMath) {
             result += ("$" + chunk.text + "$");
         } else if (chunk.kind == NaturalChunkKind::DisplayMath) {
-            result += ("\\[" + chunk.text + "\\]");
+            if (chunk.text.find("\\begin{itemize}") != std::string::npos || chunk.text.find("\\begin{enumerate}") != std::string::npos) {
+                result += chunk.text;
+            } else {
+                result += "\\[" + chunk.text + "\\]";
+            }
         }
     }
 
@@ -506,6 +510,70 @@ std::string specialFunctionToLaTeX(const std::string& function_name, const std::
         return "\\frac{\\partial}{\\partial " + parseArg(raw_args[1]) + "}\\left(" + parseArg(raw_args[0]) + "\\right)";
     }
 
+    else if (kind == "BINOM") {
+        if (raw_args.size() != 2) {
+            throw std::runtime_error(function_name + " expects 2 arguments");
+        }
+
+        return "\\binom{" + parseArg(raw_args[0]) + "}{" + parseArg(raw_args[1]) + "}";
+    }
+
+    else if (kind == "VEC") {
+        if (raw_args.size() != 1) {
+            throw std::runtime_error(function_name + " expects 1 argument");
+        }
+
+        return "\\vec{" + parseArg(raw_args[0]) + "}";
+    }
+
+    else if (kind == "HAT") {
+        if (raw_args.size() != 1) {
+            throw std::runtime_error(function_name + " expects 1 argument");
+        }
+
+        return "\\hat{" + parseArg(raw_args[0]) + "}";
+    }
+
+    else if (kind == "OVERLINE") {
+        if (raw_args.size() != 1) {
+            throw std::runtime_error(function_name + " expects 1 argument");
+        }
+
+        return "\\overline{" + parseArg(raw_args[0]) + "}";
+    }
+
+    else if (kind == "UNDERLINE") {
+        if (raw_args.size() != 1) {
+            throw std::runtime_error(function_name + " expects 1 argument");
+        }
+
+        return "\\underline{" + parseArg(raw_args[0]) + "}";
+    }
+
+    else if (kind == "TILDE") {
+        if (raw_args.size() != 1) {
+            throw std::runtime_error(function_name + " expects 1 argument");
+        }
+
+        return "\\tilde{" + parseArg(raw_args[0]) + "}";
+    }
+
+    else if (kind == "DOT") {
+        if (raw_args.size() != 1) {
+            throw std::runtime_error(function_name + " expects 1 argument");
+        }
+
+        return "\\dot{" + parseArg(raw_args[0]) + "}";
+    }
+
+    else if (kind == "DDOT") {
+        if (raw_args.size() != 1) {
+            throw std::runtime_error(function_name + " expects 1 argument");
+        }
+
+        return "\\ddot{" + parseArg(raw_args[0]) + "}";
+    }
+
     throw std::runtime_error("Unknown special function: " + function_name);
 }
 
@@ -537,6 +605,118 @@ std::string matrixToLaTeX(const std::string& op_name, const std::string& matrix_
     return "\\begin{" + env_name + "}" + joinVector(latex_rows, " \\\\ ") + "\\end{" + env_name + "}";
 }
 
+std::vector<std::string> splitLines(const std::string& s) {
+    std::vector<std::string> lines;
+    std::string current;
+
+    for (char c : s) {
+        if (c == '\n') {
+            if (!trim(current).empty()) lines.push_back(trim(current));
+            current.clear();
+        } else {
+            current += c;
+        }
+    }
+
+    if (!trim(current).empty()) {
+        lines.push_back(trim(current));
+    }
+
+    return lines;
+}
+
+std::vector<std::string> splitListItems(const std::string& body) {
+    std::vector<std::string> items;
+    std::vector<std::string> lines = splitLines(body);
+
+    std::string current;
+    int depth = 0;
+
+    for (const std::string& line : lines) {
+        std::string t = trim(line);
+        if (t.empty()) {
+            continue;
+        }
+
+        if (!current.empty()) {
+            current += "\n";
+        }
+        current += t;
+
+        for (char c : t) {
+            if (c == '(') {
+                ++depth;
+            } else if (c == ')'){
+                --depth;
+            }
+        }
+
+        if (depth == 0) {
+            items.push_back(current);
+            current.clear();
+        }
+    }
+
+    if (!trim(current).empty()) {
+        items.push_back(current);
+    }
+
+    return items;
+}
+
+std::string listToLaTeX(const std::string& kind, const std::string& body) {
+    std::vector<std::string> lines = splitListItems(body);
+
+    std::string begin;
+    if (kind == "BULLETS") {
+        begin = "\\begin{itemize}";
+    } else if (kind == "NUMLIST") {
+        begin = "\\begin{enumerate}";
+    } else if (kind == "PARTS") {
+        begin = "\\begin{enumerate}[label=(\\alph*)]";
+    } else if (kind == "ROMANLIST") {
+        begin = "\\begin{enumerate}[label=(\\roman*)]";
+    } else {
+        throw std::runtime_error("Unknown list type");
+    }
+
+    std::string out = begin + "\n";
+
+    for (const std::string& line : lines) {
+        out += "\\item " + naturalSegmentToLaTeX(line) + "\n";
+    }
+
+    if (kind == "BULLETS") {
+        out += "\\end{itemize}";
+    } else {
+        out += "\\end{enumerate}";
+    }
+
+    return out;
+}
+
+std::string casesToLaTeX(const std::string& body) {
+    std::vector<std::string> lines = splitLines(body);
+
+    std::string out = "\\begin{cases}\n";
+
+    for (const std::string& line : lines) {
+        std::vector<std::string> parts = splitTopLevel(line, ',');
+
+        if (parts.size() == 1) {
+            out += naturalSegmentToLaTeX(trim(parts[0])) + " \\\\\n";
+        } else {
+            std::string lhs = naturalSegmentToLaTeX(trim(parts[0]));
+            std::string rhs = naturalSegmentToLaTeX(trim(parts[1]));
+
+            out += lhs + " & " + rhs + " \\\\\n";
+        }
+    }
+
+    out += "\\end{cases}";
+    return out;
+}
+
 std::string convertSpecialFunctions(const std::string& input) {
     std::string out;
 
@@ -552,7 +732,13 @@ std::string convertSpecialFunctions(const std::string& input) {
                 if (close != std::string::npos) {
                     std::string body = input.substr(i + 1, close - i - 1);
 
-                    if (name == "matrix" || name == "pmatrix" || name == "bmatrix" || name == "vmatrix") {
+                    std::string kind = SPECIAL_FUNCTIONS.at(name);
+
+                    if (kind == "BULLETS" || kind == "NUMLIST" || kind == "PARTS" || kind == "ROMANLIST") {
+                        out += listToLaTeX(kind, body);
+                    } else if (kind == "CASES") {
+                        out += casesToLaTeX(body);
+                    } else if (kind == "MATRIX" || kind == "PMATRIX" || kind == "BMATRIX" || kind == "VMATRIX") {
                         out += matrixToLaTeX(name, body);
                     } else {
                         out += specialFunctionToLaTeX(name, splitTopLevel(body, ','));

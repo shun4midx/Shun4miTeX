@@ -153,7 +153,25 @@ const std::unordered_map<std::string, std::string> SPECIAL_FUNCTIONS = {
     {"matrix", "MATRIX"},
     {"pmatrix", "PMATRIX"},
     {"bmatrix", "BMATRIX"},
-    {"vmatrix", "VMATRIX"}
+    {"vmatrix", "VMATRIX"},
+    {"bullets", "BULLETS"},
+    {"bulletlist", "BULLETS"},
+    {"numlist", "NUMLIST"},
+    {"numberedlist", "NUMLIST"},
+    {"parts", "PARTS"},
+    {"romanlist", "ROMANLIST"},
+    {"cases", "CASES"},
+    {"piecewise", "CASES"},
+    {"binom", "BINOM"},
+    {"choose", "BINOM"},
+    {"vec", "VEC"},
+    {"hat", "HAT"},
+    {"bar", "OVERLINE"},
+    {"overline", "OVERLINE"},
+    {"underline", "UNDERLINE"},
+    {"tilde", "TILDE"},
+    {"dot", "DOT"},
+    {"ddot", "DDOT"}
 };
 
 const std::unordered_map<std::string, std::string> OPERATORS = {

@@ -315,6 +315,111 @@ Columns are separated by commas (`,`).
 
 ---
 
+# Lists (Make sure to not use inline here! Use `@@@...@@@`)
+
+Natural math supports line-based lists. Each non-empty line becomes one item.
+
+Bullet lists:
+
+```text
+bullets(
+First point
+Second point
+Third point
+)
+```
+
+Numbered lists:
+
+```text
+numlist(
+First step
+Second step
+Third step
+)
+```
+
+Part using `(a), (b), (c), ...` labels:
+```text
+parts(
+Find x
+Find y
+Explain your answer
+)
+```
+
+Roman numeral lists, using `(i), (ii), (iii), ...` labels:
+```text
+romanlist(
+Assume for contradiction
+Apply the theorem
+Conclude
+)
+```
+
+Aliases:
+```text
+bulletlist(...)
+numberedlist(...)
+```
+
+---
+
+# Cases and Piecewise Functions (Make sure to not use inline here! Use `@@@...@@@`)
+
+Use `cases(...)` or `piecewise(...)` for piecewise definitions.
+
+Each line is one case. Separate the expression from the condition with a comma.
+
+```text
+cases(
+x^2, x >= 0
+-x, x < 0
+)
+```
+
+`piecewise(...)` is an alias of `cases(...)`.
+
+```text
+piecewise(
+0, x < 0
+1, x >= 0
+)
+```
+
+---
+# Binomial Coefficients and Decorations
+
+Binomial coefficients:
+
+```text
+binom(n, k)
+
+choose(n, k)
+```
+
+Vector and accent notation:
+
+```text
+vec(v)
+
+hat(theta)
+
+overline(x)
+
+bar(x)
+
+underline(x)
+
+tilde(f)
+
+dot(x)
+
+ddot(x)
+```
+
+---
+
 # Miscellaneous
 
 ```text
@@ -324,7 +429,7 @@ floor(x)
 
 ceil(x)
 
-angle ABC
+angle(ABC)
 
 triangle ABC
 

@@ -20,6 +20,9 @@ or
 
 For more information about how to use natural math notation, please refer to [here](https://github.com/shun4midx/Shun4miTeX/blob/main/Natural_Doc.md).
 
+# Link to the Currently Officially Hosted Shun4miTeX
+Here is the [link](https://discord.com/oauth2/authorize?client_id=1516208270631632978) if you want to invite the currently officially hosted Shun4miTeX bot into your server!
+
 # Current Status
 
 * [x] C++ CLI renderer
@@ -100,6 +103,8 @@ Generated render jobs are stored under `jobs/`.
 # Notes
 
 This project is still in early development. I plan to support more languages and also emojis and other unicode in the future. Additionally, I plan to support more natural notation. However, for preliminary usage, it should suffice.
+
+For support, please contact me via [Email](mailto:shun4midx@gmail.com) or Discord at @shun4midx.
 
 # Credit
 DPP is directly found via [this](https://github.com/brainboxdotcc/DPP) repo, and is used for C++ Discord bot coding.
