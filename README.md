@@ -109,4 +109,4 @@ This project is still in early development. I plan to support more languages and
 For support, please contact me via [Email](mailto:shun4midx@gmail.com) or Discord at @shun4midx.
 
 # Credit
-DPP is directly found via [this](https://github.com/brainboxdotcc/DPP) repo, and is used for C++ Discord bot coding.
+DPP is directly found via [this repo](https://github.com/brainboxdotcc/DPP), and is used for C++ Discord bot coding.
