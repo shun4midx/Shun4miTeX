@@ -8,7 +8,6 @@ LaTeX-Template/
 *.synctex.gz
 *.dvi
 *.pdf
-*.png
 *.svg
 *.bcf
 *.run.xml

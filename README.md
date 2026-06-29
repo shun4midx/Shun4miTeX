@@ -1,13 +1,25 @@
 # Shun4miTeX
-Shun's Discord bot for rendering LaTeX and natural math notation, into formal TeX-like images as outputs. It also includes a basic scientific calculator for convenience of calculation. Like most of Shun's projects, it's written in C++.
+Shun's Discord bot for rendering LaTeX and natural math notation into formal TeX-like images. It also includes a basic scientific calculator for convenience. Like most of Shun's projects, it's written in C++.
 
 It's canonically pronounced as "Shunami TeX" or "Tsunami TeX".
 
 Currently, the core renderer works from the command line: it writes a temporary LaTeX file, renders it inside a Dockerized TeX Live environment, converts the result to PNG (with white text on a black background), and returns the generated image. Then, this backend process is wrapped via a Discord bot.
 
+# Demo
+
+Shun4miTeX can take a Discord message written in natural math notation and render it as a TeX-like image, like below!
+
+Input:
+
+![Shun4miTeX demo input](docs/demo_input.png)
+
+Output:
+
+![Shun4miTeX demo output](docs/demo_output.png)
+
 # Command Usage
 
-The mainly supported commands are `/math` and `/tex`, which support natural math notation and LaTeX respectively. They can either be used via slash commands, or typed into a text message like so:
+The main supported commands are `/math` and `/tex`, which support natural math notation and LaTeX respectively. They can either be used via slash commands, or typed into a text message like so:
 ```text
 /math
 <natural math here>
@@ -22,10 +34,10 @@ For more information about how to use natural math notation, please refer to [he
 
 For more information about what kinds of calculations the scientific calculator supports, please refer to [here](docs/Calculator_Doc.md). It is accessed via typing in the `/calc` slash command.
 
-# Link to the Currently Officially Hosted Shun4miTeX
-Here is the [link](https://discord.com/oauth2/authorize?client_id=1516208270631632978) if you want to invite the currently officially hosted Shun4miTeX bot into your server!
+# Invite Shun's Hosted Shun4miTeX Bot
+Here is the [invite link](https://discord.com/oauth2/authorize?client_id=1516208270631632978) if you want to invite Shun's currently hosted instance of the Shun4miTeX bot into your server!
 
-# Current Status
+# Features
 
 * [x] C++ CLI renderer
 * [x] Dockerized LaTeX rendering
@@ -33,7 +45,7 @@ Here is the [link](https://discord.com/oauth2/authorize?client_id=15162082706316
 * [x] Basic math packages and `tcolorbox` support including some other minimal shortcuts [I use](https://github.com/shun4midx/LaTeX-Template)
 * [x] Discord bot message command
 * [x] Slash command support
-* [x] Natural math notation parser (Start with roughly high school and beginning of college math)
+* [x] Natural math notation parser (Currently supports roughly high school and early college math)
 * [x] Documented list of supported natural math notation
 
 # Requirements
@@ -109,4 +121,4 @@ This project is still in early development. I plan to support more languages and
 For support, please contact me via [Email](mailto:shun4midx@gmail.com) or Discord at @shun4midx.
 
 # Credit
-DPP is directly found via [this repo](https://github.com/brainboxdotcc/DPP), and is used for C++ Discord bot coding.
+DPP can be directly found via [this repo](https://github.com/brainboxdotcc/DPP), and is used for C++ Discord bot coding.
