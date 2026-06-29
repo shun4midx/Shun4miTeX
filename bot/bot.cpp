@@ -211,20 +211,20 @@ int main() {
         bot.set_presence(dpp::presence(dpp::ps_idle, dpp::at_game, "Helping Shun with math!"));
 
         if (dpp::run_once<struct register_bot_commands>()) {
-            // bot.global_command_create(dpp::slashcommand("shun_names", "What are all of Shun's names?", bot.me.id));
-            // bot.global_command_create(dpp::slashcommand("best_programming_language", "What's the best programming language?", bot.me.id));
-            // bot.global_command_create(dpp::slashcommand("is_cpp_good", "Is C++ good?", bot.me.id));
-            // bot.global_command_create(dpp::slashcommand("is_shun_good", "Is Shun good?", bot.me.id));
-            // bot.global_command_create(dpp::slashcommand("shun4mitex", "Sends my pfp as an emoji", bot.me.id));
+            bot.global_command_create(dpp::slashcommand("shun_names", "What are all of Shun's names?", bot.me.id));
+            bot.global_command_create(dpp::slashcommand("best_programming_language", "What's the best programming language?", bot.me.id));
+            bot.global_command_create(dpp::slashcommand("is_cpp_good", "Is C++ good?", bot.me.id));
+            bot.global_command_create(dpp::slashcommand("is_shun_good", "Is Shun good?", bot.me.id));
+            bot.global_command_create(dpp::slashcommand("shun4mitex", "Sends my pfp as an emoji", bot.me.id));
 
-            // dpp::slashcommand tex_cmd("tex", "Render LaTeX as an image", bot.me.id);
-            // tex_cmd.add_option(dpp::command_option(dpp::co_string, "input", "LaTeX input", true));
-            // bot.global_command_create(tex_cmd);
-            // dpp::slashcommand math_cmd("math", "Render natural math as an image", bot.me.id);
-            // math_cmd.add_option(dpp::command_option(dpp::co_string, "input", "Natural math input", true));
-            // bot.global_command_create(math_cmd);
+            dpp::slashcommand tex_cmd("tex", "Render LaTeX as an image", bot.me.id);
+            tex_cmd.add_option(dpp::command_option(dpp::co_string, "input", "LaTeX input", true));
+            bot.global_command_create(tex_cmd);
+            dpp::slashcommand math_cmd("math", "Render natural math as an image", bot.me.id);
+            math_cmd.add_option(dpp::command_option(dpp::co_string, "input", "Natural math input", true));
+            bot.global_command_create(math_cmd);
 
-            // bot.global_command_create(dpp::slashcommand("help_math", "How do I use natural math notation?", bot.me.id));
+            bot.global_command_create(dpp::slashcommand("help_math", "How do I use natural math notation?", bot.me.id));
             bot.global_command_create(dpp::slashcommand("calc", "Scientific calculator mode", bot.me.id).add_option(dpp::command_option(dpp::co_string, "input", "Calculator input", true)));
         }
     });
