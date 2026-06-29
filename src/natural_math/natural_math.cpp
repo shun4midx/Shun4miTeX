@@ -190,7 +190,7 @@ std::string convertSuperSubDigits(const std::string& input) {
 }
 
 bool isWordChar(char c) {
-    return std::isalnum(static_cast<unsigned char>(c)) || c == '_';
+    return std::isalnum(static_cast<unsigned char>(c));
 }
 
 bool hasWordBoundary(const std::string& s, std::size_t pos, std::size_t len) {
@@ -247,18 +247,50 @@ std::size_t findMatchingParen(const std::string& s, std::size_t open_pos) {
     return std::string::npos;
 }
 
-std::string convertParenthesizedExponents(const std::string& input) {
+std::string convertScripts(const std::string& input) {
     std::string out;
 
     for (std::size_t i = 0; i < input.size();) {
-        if (i + 1 < input.size() && input[i] == '^' && input[i + 1] == '(') {
-            std::size_t open_pos = i + 1;
-            std::size_t close_pos = findMatchingParen(input, open_pos);
+        if ((input[i] == '^' || input[i] == '_') && i + 1 < input.size()) {
+            char op = input[i];
 
-            if (close_pos != std::string::npos) {
-                std::string inside = input.substr(open_pos + 1, close_pos - open_pos - 1);
-                out += "^{" + naturalSegmentToLaTeX(inside) + "}";
-                i = close_pos + 1;
+            // Recursive grouped script:
+            // x_(n + 1), x^(alpha + beta), mu_(text(test))
+            if (input[i + 1] == '(') {
+                std::size_t open_pos = i + 1;
+                std::size_t close_pos = findMatchingParen(input, open_pos);
+
+                if (close_pos != std::string::npos) {
+                    std::string inside = input.substr(open_pos + 1, close_pos - open_pos - 1);
+
+                    out += op;
+                    out += "{";
+                    out += naturalSegmentToLaTeX(inside);
+                    out += "}";
+
+                    i = close_pos + 1;
+                    continue;
+                }
+            }
+
+            // Simple one-token script:
+            // x_i, x^2, mu_s
+            if (std::isalnum(static_cast<unsigned char>(input[i + 1]))) {
+                std::size_t start = i + 1;
+                std::size_t j = start;
+
+                while (j < input.size() && std::isalnum(static_cast<unsigned char>(input[j]))) {
+                    ++j;
+                }
+
+                std::string inside = input.substr(start, j - start);
+
+                out += op;
+                out += "{";
+                out += naturalSegmentToLaTeX(inside);
+                out += "}";
+
+                i = j;
                 continue;
             }
         }
@@ -278,7 +310,7 @@ std::string naturalSegmentToLaTeX(const std::string& natural_segment) {
 
     result = replaceAllFromMap(result, UNICODE_SYMBOLS);
     result = convertSuperSubDigits(result);
-    result = convertParenthesizedExponents(result);
+    result = convertScripts(result);
     result = convertSpecialFunctions(result);
 
     result = replaceWholeWordFromMap(result, MATHBB_LETTERS);
@@ -723,7 +755,9 @@ std::string convertSpecialFunctions(const std::string& input) {
     for (std::size_t i = 0; i < input.size();) {
         if (std::isalpha(static_cast<unsigned char>(input[i]))) {
             std::size_t start = i;
-            while (i < input.size() && isWordChar(input[i])) ++i;
+            while (i < input.size() && isWordChar(input[i])) {
+                ++i;
+            }
 
             std::string name = input.substr(start, i - start);
 
