@@ -1,5 +1,5 @@
 # Shun4miTeX
-Shun's Discord bot for rendering LaTeX and natural math notation, into formal TeX-like images as outputs. Like most of Shun's projects, it's written in C++.
+Shun's Discord bot for rendering LaTeX and natural math notation, into formal TeX-like images as outputs. It also includes a basic scientific calculator for convenience of calculation. Like most of Shun's projects, it's written in C++.
 
 It's canonically pronounced as "Shunami TeX" or "Tsunami TeX".
 
@@ -19,6 +19,8 @@ or
 ```
 
 For more information about how to use natural math notation, please refer to [here](https://github.com/shun4midx/Shun4miTeX/blob/main/Natural_Doc.md).
+
+[Work in Progress] For more information about what type of math the scientific calculator supports, please refer to [here](https://github.com/shun4midx/Shun4miTeX/blob/main/Calculator_Doc.md). It is accessed via typing in the `/calc` slash command.
 
 # Link to the Currently Officially Hosted Shun4miTeX
 Here is the [link](https://discord.com/oauth2/authorize?client_id=1516208270631632978) if you want to invite the currently officially hosted Shun4miTeX bot into your server!
