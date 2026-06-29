@@ -1,4 +1,4 @@
-# Shun4miTeX Scientific Calculator Support [WIP, Planned V1]
+# Shun4miTeX Scientific Calculator Support
 
 Constants:
 `pi, e`

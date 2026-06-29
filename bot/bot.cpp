@@ -61,7 +61,111 @@ int main() {
 
         // ======== HELP AND SUPPORT FUNCTIONS ======== //
         else if (event.command.get_command_name() == "help_math") {
-            event.reply("You can either use the slash command /math or type directly \"/math\" in your message and add a new line under it to type the math you actually want. You can type normally in English, and when you want to type math, wrap it around like so `@@<math you type>@@`. If you want to type math on a new line, wrap it instead as `@@@<math you type>@@@`. As to syntax, here are examples for more info. Feel free to copy and paste these and check out how they render!\n\nWrap inline math:\n@@A = pi r^2@@\n\nWrap display math:\n@@@\nsum(i = 1, n, i^2)\n@@@\n\nMore specific examples:\n**Fractions**\n@@frac(a+b, c)@@\n\n**Roots**\n@@sqrt(x)@@\n@@root(n, x)@@\n@@cbrt(x)@@\n\n**Integrals**\n@@int(0, 1, x^2, x)@@\n@@int(-infinity, infinity, e^(-x^2), x)@@\n\n**Limits**\n@@lim(x, 0, f(x))@@\n\n**Summations**\n@@sum(i = 1, n, i)@@\n@@prod(i = 1, n, i)@@\n\n**Derivatives**\n@@deriv(y, x)@@\n@@ddx(f, x)@@\n@@pderiv(f, x)@@\n@@pddx(f, x)@@\n\n**Matrices**\n@@@pmatrix(1, 2; 3, 4)@@@\n\n**Sets**\n@@RR ZZ QQ NN CC PP AA FF HH@@\nor\n@@ℝ ℤ ℚ ℕ ℂ ℙ 𝔸 𝔽 ℍ@@\n\n**Greek**\n@@alpha beta Gamma pi theta@@\nor\n@@α β Γ π θ@@\n\n**Unicode also works!**\n@@∞ ≤ ≥ ≠ → ∈ ∪ ∩ ∅ ±@@\n\n**Lists**\n@@@\nbullets(\nFirst point\nSecond point\n)\n@@@\n\n@@@\nparts(\nFind x\nFind y\n)\n@@@\n\n**Cases / Piecewise**\n@@@\ncases(\nx^2, x >= 0\n-x, x < 0\n)\n@@@\n\n**Binomial / Decorations**\n@@binom(n, k)@@\n@@vec(v) + hat(theta) + overline(x)@@\n\nFor even more info, please check out https://github.com/shun4midx/Shun4miTeX");
+            event.reply("You can either use the slash command /math or type directly \"/math\" in your message and add a new line under it to type the math you actually want. You can type normally in English, and when you want to type math, wrap it around like so `@@<math you type>@@`. If you want to type math on a new line, wrap it instead as `@@@<math you type>@@@`. As to syntax, here are examples for more info. Feel free to copy and paste these and check out how they render!\n\n"
+
+            "Wrap inline math:\n"
+            "`@@A = pi r^2@@`\n\n"
+
+            "Wrap display math:\n"
+            "```@@@\nsum(i = 1, n, i^2)\n@@@```\n"
+
+            "More specific examples:\n"
+            "**Fractions**\n"
+            "`@@frac(a+b, c)@@`\n\n"
+            
+            "**Roots**\n"
+            "`@@sqrt(x)@@`\n"
+            "`@@root(n, x)@@`\n"
+            "`@@cbrt(x)@@`\n\n"
+            
+            "**Integrals**\n"
+            "`@@int(0, 1, x^2, x)@@`\n"
+            "`@@int(-infinity, infinity, e^(-x^2), x)@@`\n\n"
+            
+            "**Limits**\n"
+            "`@@lim(x, 0, f(x))@@`\n\n"
+            
+            "**Summations**\n"
+            "`@@sum(i = 1, n, i)@@`\n"
+            "`@@prod(i = 1, n, i)@@`\n\n"
+            
+            "**Derivatives**\n"
+            "`@@deriv(y, x)@@`\n"
+            "`@@ddx(f, x)@@`\n"
+            "`@@pderiv(f, x)@@`\n"
+            "`@@pddx(f, x)@@`\n\n"
+            
+            "**Matrices**\n"
+            "`@@@pmatrix(1, 2; 3, 4)@@@`\n\n"
+            
+            "**Sets**\n"
+            "`@@RR ZZ QQ NN CC PP AA FF HH@@`\n"
+            "or\n"
+            "`@@ℝ ℤ ℚ ℕ ℂ ℙ 𝔸 𝔽 ℍ@@`\n\n"
+            
+            "**Greek**\n"
+            "`@@alpha beta Gamma pi theta@@`\n"
+            "or\n"
+            "`@@α β Γ π θ@@`\n\n"
+            
+            "**Unicode also works!**\n"
+            "`@@∞ ≤ ≥ ≠ → ∈ ∪ ∩ ∅ ±@@`\n\n"
+            
+            "**Lists (Make sure to not use inline!)**\n"
+            "```@@@\n"
+            "bullets(\n"
+            "First point\n"
+            "Second point\n"
+            ")\n"
+            "@@@```\n"
+            
+            "```@@@\n"
+            "parts(\n"
+            "Find x\n"
+            "Find y\n"
+            ")\n"
+            "@@@```\n"
+            
+            "**Cases / Piecewise (Make sure to not use inline!)**\n"
+            "```@@@\n"
+            "cases(\n"
+            "x^2, x >= 0\n"
+            "-x, x < 0\n"
+            ")\n"
+            "@@@```\n"
+            
+            "**Binomial / Decorations**\n"
+            "`@@binom(n, k)@@`\n"
+            "`@@vec(v) + hat(theta) + overline(x)@@`\n\n"
+            
+            "For even more info, please check out https://github.com/shun4midx/Shun4miTeX");
+        }
+
+        else if (event.command.get_command_name() == "help_calc") {
+            event.reply(
+                "**Shun4miTeX Calculator Help**\n"
+                "Use `/calc <expression>` to evaluate a scientific calculator expression.\n\n"
+
+                "**Examples**\n"
+                "`/calc 1 + 2 * 3`\n"
+                "`/calc sqrt(9)`\n"
+                "`/calc sin(pi / 2)`\n"
+                "`/calc log(8, 2)`\n"
+                "`/calc choose(5, 2)`\n"
+                "`/calc deg(pi)`\n\n"
+
+                "**Constants:** `pi`, `e`\n"
+                "**Operators:** `+`, `-`, `*`, `/`, `^`, `!`\n"
+                "**Grouping:** `( )`\n\n"
+
+                "**Functions:**\n"
+                "`sqrt(x)`, `root(x, n)`, `abs(x)`, `exp(x)`, `ln(x)`, `log(x)`, `log(x, b)`\n"
+                "`sin(x)`, `cos(x)`, `tan(x)`, `arcsin(x)`, `arccos(x)`, `arctan(x)`\n"
+                "`rad(x)`, `deg(x)`, `choose(n, k)`, `perm(n, k)`\n\n"
+
+                "Trig functions use radians. For degrees, use `rad(x)` to first convert from degrees into radians, e.g. `/calc sin(rad(30))`.\n\n"
+                "For even more info, please check out https://github.com/shun4midx/Shun4miTeX"
+            );
         }
 
         // ======== MAIN FUNCTIONS ======== //
@@ -226,6 +330,7 @@ int main() {
 
             bot.global_command_create(dpp::slashcommand("help_math", "How do I use natural math notation?", bot.me.id));
             bot.global_command_create(dpp::slashcommand("calc", "Scientific calculator mode", bot.me.id).add_option(dpp::command_option(dpp::co_string, "input", "Calculator input", true)));
+            bot.global_command_create(dpp::slashcommand("help_calc", "How do I use the scientific calculator mode?", bot.me.id));
         }
     });
 

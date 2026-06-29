@@ -23,7 +23,7 @@ struct CalcResult {
 static const CalcResult INVALID_RESULT = {false, 0.0, "Error"};
 
 // ======== FUNCTIONS ======== //
-CalcResult calc(const std::string_view& input);
+CalcResult calc(std::string_view input);
 std::string calcString(std::string_view input);
 
 }

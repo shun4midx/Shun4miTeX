@@ -18,6 +18,6 @@ target_link_libraries(shun4mitex PRIVATE ${DPP_LIBRARIES})
 target_include_directories(shun4mitex PRIVATE ${DPP_INCLUDE_DIR})
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
-    CXX_STANDARD 17
+    CXX_STANDARD 20
     CXX_STANDARD_REQUIRED ON
 )
