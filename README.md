@@ -18,9 +18,9 @@ or
 <TeX math here>
 ```
 
-For more information about how to use natural math notation, please refer to [here](https://github.com/shun4midx/Shun4miTeX/blob/main/Natural_Doc.md).
+For more information about how to use natural math notation, please refer to [here](docs/Natural_Doc.md).
 
-[Work in Progress] For more information about what type of math the scientific calculator supports, please refer to [here](https://github.com/shun4midx/Shun4miTeX/blob/main/Calculator_Doc.md). It is accessed via typing in the `/calc` slash command.
+[Work in Progress] For more information about what kinds of calculations the scientific calculator supports, please refer to [here](docs/Calculator_Doc.md). It is accessed via typing in the `/calc` slash command.
 
 # Link to the Currently Officially Hosted Shun4miTeX
 Here is the [link](https://discord.com/oauth2/authorize?client_id=1516208270631632978) if you want to invite the currently officially hosted Shun4miTeX bot into your server!
@@ -94,7 +94,7 @@ g++ -std=c++17 src/cli.cpp src/latex_render/latex_render.cpp -o cli
 ./cli 'This is a fraction $\frac{x^2+1}{x-3}$'
 ```
 
-Example with a custom color box based off of [Shun's usually used minimal shortcuts](https://github.com/shun4midx/latex-template):
+Example with a custom color box based off of [Shun's usually used minimal shortcuts](https://github.com/shun4midx/LaTeX-Template):
 
 ```bash
 ./cli '\pinkbox{Note}{Hello from Shun4miTeX}'
