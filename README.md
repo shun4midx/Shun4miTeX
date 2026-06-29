@@ -9,7 +9,7 @@ Currently, the core renderer works from the command line: it writes a temporary 
 
 Shun4miTeX can take a Discord message written in natural math notation and render it as a TeX-like image, like below with the input and output!
 
-<img src="docs/demo_input.png" alt="Shun4miTeX demo input" height="400"><img src="docs/demo_output.png" alt="Shun4miTeX demo output" height="400">
+<img src="docs/demo_input.png" alt="Shun4miTeX demo input" height="300"><img src="docs/demo_output.png" alt="Shun4miTeX demo output" height="300">
 
 # Command Usage
 
