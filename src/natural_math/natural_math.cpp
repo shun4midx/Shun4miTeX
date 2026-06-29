@@ -447,19 +447,19 @@ std::string specialFunctionToLaTeX(const std::string& function_name, const std::
     }
 
     else if (kind == "SUM") {
-        if (raw_args.size() != 4) {
-            throw std::runtime_error(function_name + " expects 4 arguments");
+        if (raw_args.size() != 3) {
+            throw std::runtime_error(function_name + " expects 3 arguments");
         }
 
-        return "\\sum_{" + parseArg(raw_args[0]) + "=" + parseArg(raw_args[1]) + "}^{" + parseArg(raw_args[2]) + "} " + parseArg(raw_args[3]) + " ";
+        return "\\sum_{" + parseArg(raw_args[0]) + "}^{" + parseArg(raw_args[1]) + "} " + parseArg(raw_args[2]) + " ";
     }
 
     else if (kind == "PROD") {
-        if (raw_args.size() != 4) {
-            throw std::runtime_error(function_name + " expects 4 arguments");
+        if (raw_args.size() != 3) {
+            throw std::runtime_error(function_name + " expects 3 arguments");
         }
 
-        return "\\prod_{" + parseArg(raw_args[0]) + "=" + parseArg(raw_args[1]) + "}^{" + parseArg(raw_args[2]) + "} " + parseArg(raw_args[3]) + " ";
+        return "\\prod_{" + parseArg(raw_args[0]) + "}^{" + parseArg(raw_args[1]) + "} " + parseArg(raw_args[2]) + " ";
     }
 
     else if (kind == "LIM") {
