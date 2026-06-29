@@ -39,7 +39,7 @@ Here is the [link](https://discord.com/oauth2/authorize?client_id=15162082706316
 # Requirements
 
 * Docker
-* C++17 compiler
+* C++20 compiler
 * TeX packages are installed inside the Docker image, so a local TeX Live installation is not required for rendering.
 
 # Usage
