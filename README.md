@@ -20,7 +20,7 @@ or
 
 For more information about how to use natural math notation, please refer to [here](docs/Natural_Doc.md).
 
-[Work in Progress] For more information about what kinds of calculations the scientific calculator supports, please refer to [here](docs/Calculator_Doc.md). It is accessed via typing in the `/calc` slash command.
+For more information about what kinds of calculations the scientific calculator supports, please refer to [here](docs/Calculator_Doc.md). It is accessed via typing in the `/calc` slash command.
 
 # Link to the Currently Officially Hosted Shun4miTeX
 Here is the [link](https://discord.com/oauth2/authorize?client_id=1516208270631632978) if you want to invite the currently officially hosted Shun4miTeX bot into your server!
