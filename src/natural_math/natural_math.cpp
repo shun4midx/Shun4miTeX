@@ -696,6 +696,29 @@ std::vector<std::string> splitListItems(const std::string& body) {
     return items;
 }
 
+std::string listItemToLaTeX(const std::string& item) {
+    std::vector<NaturalChunk> chunks = spliceNaturalText(item);
+    std::string out;
+
+    for (auto& chunk : chunks) {
+        if (chunk.kind == NaturalChunkKind::Text) {
+            out += naturalSegmentToLaTeX(chunk.text);
+        } else if (chunk.kind == NaturalChunkKind::InlineMath) {
+            out += "$" + naturalSegmentToLaTeX(chunk.text) + "$";
+        } else if (chunk.kind == NaturalChunkKind::DisplayMath) {
+            std::string parsed = naturalSegmentToLaTeX(chunk.text);
+
+            if (parsed.find("\\begin{itemize}") != std::string::npos || parsed.find("\\begin{enumerate}") != std::string::npos) {
+                out += parsed;
+            } else {
+                out += "\\[" + parsed + "\\]";
+            }
+        }
+    }
+
+    return out;
+}
+
 std::string listToLaTeX(const std::string& kind, const std::string& body) {
     std::vector<std::string> lines = splitListItems(body);
 
@@ -715,7 +738,7 @@ std::string listToLaTeX(const std::string& kind, const std::string& body) {
     std::string out = begin + "\n";
 
     for (const std::string& line : lines) {
-        out += "\\item " + naturalSegmentToLaTeX(line) + "\n";
+        out += "\\item " + listItemToLaTeX(line) + "\n";
     }
 
     if (kind == "BULLETS") {
