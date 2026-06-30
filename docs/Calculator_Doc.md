@@ -36,6 +36,9 @@ rad(x)
 deg(x)
 ```
 
+> [!TIP]
+> Trig functions use radians. For degrees, use `rad(x)` to first convert from degrees into radians, e.g. `/calc sin(rad(30))`
+
 Combinatorics:
 ```text
 choose(n, k)
