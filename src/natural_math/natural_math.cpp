@@ -383,6 +383,14 @@ std::string specialFunctionToLaTeX(const std::string& function_name, const std::
         return "\\text{" + raw_args[0] + "}";
     }
 
+    else if (kind == "DISPLAY") {
+        if (raw_args.size() != 1) {
+            throw std::runtime_error(function_name + " expects 1 argument");
+        }
+    
+        return "\\[\n" + parseArg(raw_args[0]) + "\n\\]";
+    }
+
     else if (kind == "BOXED") {
         if (raw_args.size() != 1) {
             throw std::runtime_error(function_name + " expects 1 argument");

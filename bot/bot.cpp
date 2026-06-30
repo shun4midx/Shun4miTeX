@@ -111,7 +111,7 @@ int main() {
             "**Unicode also works!**\n"
             "`@@∞ ≤ ≥ ≠ → ∈ ∪ ∩ ∅ ±@@`\n\n"
             
-            "**Lists (Make sure to not use inline!)**\n"
+            "**Lists (Make sure to use inside a `@@@...@@@` block!)**\n"
             "```@@@\n"
             "bullets(\n"
             "First point\n"
@@ -126,7 +126,7 @@ int main() {
             ")\n"
             "@@@```\n"
             
-            "**Cases / Piecewise (Make sure to not use inline!)**\n"
+            "**Cases / Piecewise (Make sure to use inside a `@@@...@@@` block!)**\n"
             "```@@@\n"
             "cases(\n"
             "x^2, x >= 0\n"

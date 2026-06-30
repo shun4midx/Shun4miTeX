@@ -123,6 +123,8 @@ const std::unordered_map<std::string, std::string> SIMPLE_OPERATORS = {
 const std::unordered_map<std::string, std::string> SPECIAL_FUNCTIONS = {
     {"text", "TEXT"},
     {"boxed", "BOXED"},
+    {"display", "DISPLAY"},
+    {"disp", "DISPLAY"},
     {"sqrt", "SQRT"},
     {"root", "ROOT"},        // root(n, x) -> \sqrt[n]{x}
     {"nthroot", "ROOT"},     // nthroot(n, x)
@@ -249,7 +251,10 @@ const std::unordered_map<std::string, std::string> ALIAS_COMMANDS = {
     {"degree", "^{\\circ} "},
     {"degrees", "^{\\circ} "},
 
-    {"mod", "\\bmod "}
+    {"mod", "\\bmod "},
+    {"dots", "\\dots "},
+    {"ldots", "\\ldots "},
+    {"cdots", "\\cdots "}
 };
 
 // ======== NAMESPACE ======== //
